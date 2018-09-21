@@ -1,0 +1,70 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #FAFAFA;
+  color: black;
+  font-size: 12px;
+}
+
+.unam{
+  font-family: Times New Roman;
+  color: white;
+}
+
+.menu{
+  color: black;
+  font-size: 15px;
+  font-family: Times New Roman;
+}
+
+.navegacion{
+  padding: 10px;
+}
+
+
+.login{
+  bottom: 20px;
+  right: 20px;
+  position: fixed;
+  size: 40px;
+}
+
+/* ESTILOS PARA LA CARTA EXPRES */
+
+.contenido-principal{
+  text-align:center;
+  margin:0 auto
+}
+
+.contenido-sec{
+  margin: 0 auto;
+  text-align:left;
+  width:80%;
+}
+
+.imagen{
+  position: fixed;
+  top: 30px;
+  left: 40px;
+}
+
+.imagen-left{
+  position: fixed;
+  top: 30px;
+  right: 40px;
+}
+
+.fondo{
+  background-image: url("../fondo3.jpg");
+  background-repeat: no-repeat;
+  left: 10px;
+  bottom: 10px;
+  background-size: 200px;
+  background-position: fixed;
+}
