@@ -27,10 +27,10 @@ class InscripcionesController extends Controller
     {
          $evento = DB::table('actividad')
                 ->select(   'act_nombre as actividad', 
-                            'act_fechaInicio', 
+                            'act_fechainicio', 
                             'act_responsable', 
-                            'act_horaInicio')
-                ->where('act_idActividad', '=', $id)
+                            'act_horainicio')
+                ->where('act_idactividad', '=', $id)
                 ->get();
 
         //dd($evento);

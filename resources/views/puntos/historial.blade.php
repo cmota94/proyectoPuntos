@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', '- constancias')
+@section('title', '- historial')
 
 @section('contenido')
 
@@ -14,9 +14,9 @@
 		<!-- Principio del buscador -->
 		<div class="row">
 			<div class="col-sm-4 col-md-8 col-md-offset-1">
-				<h2 class="page-header"><span class="fa fa-book"></span> Constancias </h2>
+				<h2 class="page-header"><span class="fa fa-list-alt "></span> Historial actividades alumno: [Nombre] </h2>
 			</div><br><br>
-			<div class="col-md-1 col-md-offset-1">
+			<!--<div class="col-md-1 col-md-offset-1">
 				<button type="button" data-toggle="modal" data-target="#modalbuscar" class="btn btn-primary">Buscar <span class="fa fa-search"></span></button>
 			<!--<form action=" {{ url('/usuarios') }}" class="form-inline pull-right" method="GET" id="search">
 				<div class="input-group">
@@ -38,34 +38,71 @@
 			<table class=" display table table-hover text-center border" id="tabla"> <!-- -->
 				<thead class="thead-light active"> 
 					<tr class="active">
-						<th class="text-center">Número de cuenta</th>
-						<th class="text-center">Nombre(s)</th>
-						<th class="text-center">Apellido paterno</th>
-						<th class="text-center">Apellido materno</th>
-						<th colspan="4" class="text-center">Opciones</th>
+						<th class="text-center">Actividad</th>
+						<th class="text-center">Fecha de inicio del evento</th>
+						<th class="text-center">Hora de inicio</th>
+						<th class="text-center">Lugar del evento</th>
+						<th class="text-center">Tipo de puntos</th>
+						<th class="text-center">Estatus</th>
+						<th class="text-center">Puntos otorgados</th>
 					</tr>
 				</thead>
 				<tbody>
-					@while ($row = pg_fetch_row($alumnos))
-						<tr>
-							<th class="text-center">{!! $row[0]  !!}</th>
-							<td class="text-center">{!! $row[1]  !!}</td>
-							<td class="text-center">{!! $row[2]  !!}</td>
-							<td class="text-center">{!! $row[3]  !!}</td>
-							<td><a href="{!! action('PuntosController@generarConstancia', $row[0]) !!}" class="btn btn-default"><span class="fa fa-download"></span></a></td>
-						</tr>
-					@endwhile	
+					<tr>
+						<td>Carrera nocturna</td>
+						<td>14/Diciembre/2018</td>
+						<td>18:00</td>
+						<td>Externo FCA</td>
+						<td>Deportivos</td>
+						<td>Insctito</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Conferencia administración</td>
+						<td>29/Agosto/2017</td>
+						<td>14:00</td>
+						<td>Auditorio Maestro Carlos Pérez del Toro</td>
+						<td>Culturales</td>
+						<td>Registrado</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>Taller de redacción</td>
+						<td>12/Agosto/2019</td>
+						<td>15:00</td>
+						<td>Aulas del edificio J</td>
+						<td>Culturales</td>
+						<td>Registrado</td>
+						<td>5</td>
+					</tr>
+					<tr>
+						<td><strong>TOTAL</strong></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><strong>7</strong></td>
+					</tr>
+					
 				</tbody>
 			</table>
 		</div>
 		<div class="text-center">
-			<form action="" method="post" class="form inline">
-				<input type="" name="">
-				<button class="btn btn-primary" type="submit"><span class="fa fa-files-o"></span> Descargar todas</button>
-			</form>
-			<a href="" class="btn btn-default<span class="fa fa-ban"></span> Cancelar<a>
+			<!--<button class="btn btn-primary"><span class="fa fa-files-o"></span> Descargar</button>-->
+			<button class="btn btn-default"><span class="fa fa-chevron-circle-left "></span> Descargar</button>
+		</div><br><br><br>
+		<div class="row">
+			<div class="col-md4">
+				<strong>Estatus</strong><br>	
+				Inscrito: Se inscribió pero no asistió.
+				<p>Registrado: Asistió al evento.</p>
+			</div>	
 		</div>
-		</div>		
+		
+		</div>		<br>
+
+		
 
 <!-- Modal buscar --> 
   <div class="modal fade" id="modalbuscar" role="dialog">
@@ -79,7 +116,7 @@
         </div>
         <div class="modal-body">
         	<div class="row">
-	        	<form action=" {{ url('/eventos/constancias') }}" method="post">
+	        	<form action=" {{ url('/eventos/cargar') }}" method="post">
 	        		<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 	        		<div class="row text-center">
 	        			<div class="col-md-12">

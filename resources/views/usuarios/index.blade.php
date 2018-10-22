@@ -64,8 +64,8 @@
 					@foreach($usuarios as $usuario)
 						<tr>
 							<td>{!! $usuario->usu_nombre !!}</td>
-							<td>{!! $usuario->usu_apellidoPaterno !!}</td>
-							<td>{!! $usuario->usu_apellidoMaterno !!}</td>
+							<td>{!! $usuario->usu_apellidopaterno !!}</td>
+							<td>{!! $usuario->usu_apellidomaterno !!}</td>
 							<td>{!! $usuario->email !!}</td>
 							<td>{!! $usuario->rol_nombre !!}</td>
 							
@@ -162,7 +162,7 @@
 						<select class="form-control" name="rol_nombre" class="form-control">
 							<option value=""></option>
 							@foreach ($roles as $rol)
-								<option value="{{ $rol->rol_idRol }}">{{ $rol->rol_nombre }}</option>
+								<option value="{{ $rol->rol_idrol }}">{{ $rol->rol_nombre }}</option>
 							@endforeach
 						</select>
 		          	</div>

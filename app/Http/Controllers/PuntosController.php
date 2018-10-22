@@ -52,10 +52,10 @@ class PuntosController extends Controller
 			$numeroCuenta = $request->get('numeroCuenta');
 
         $numerosCuenta = DB::table('actividad')
-                          ->join('grupo', 'gruIdActividad', '=', 'act_idActividad')
-                          ->join('inscripción', 'gruIdGrupo', '=', 'insIdGrupo')
-                          ->select('insIdAlumno')
-                          ->groupBy('insIdAlumno')
+                          ->join('grupo', 'gruidactividad', '=', 'act_idactividad')
+                          ->join('inscripción', 'gruidgrupo', '=', 'insidgrupo')
+                          ->select('insidalumno')
+                          ->groupBy('insidalumno')
                           ->havingRaw('SUM(act_numeroPuntos) >= 15')
                           ->get();
 
@@ -128,5 +128,21 @@ class PuntosController extends Controller
       $pdf = PDF::loadView('puntos.constancia', compact('alumno'));
       return $pdf->download("Constancia.pdf");
 	}
+
+  public function generarConstancias(){
+    
+  }
+
+  public function historial(){
+    return view('puntos.historialIndex');
+  }
+
+  public function cargar(){
+
+  }
+
+  public function hist(){
+    return view('puntos.historial');
+  }
 }
     

@@ -8,8 +8,10 @@ use App\Http\Requests\EventosFormRequest;
 use App\User;
 use DB;
 use App\Evento;
+use App\Inscripcion;
 use PDF;
 use Carbon\Carbon;
+use App\Bitacora;
 
 class EventosController extends Controller
 {
@@ -30,81 +32,81 @@ class EventosController extends Controller
             $lugar = $request->get('lugar');
 
             if ($actividad) {
-                 $eventos = DB::table('actividad as a')
-                            ->join('subcategoria as s', 's.sub_idSubcategoria', '=', 'a.sub_idSubcategoria')
-                            ->join('recinto as r', 'a.rec_idRecinto', '=', 'r.rec_idRecinto')
-                            ->select(   's.sub_nombre', 
-                                        'a.act_idActividad', 
-                                        'a.act_nombre', 
-                                        'a.act_fechaInicio',
-                                        'a.act_horaInicio',
-                                        'a.act_estatus', 
-                                        'r.rec_nombre')
-                            ->where('a.act_nombre', 'LIKE', '%'. $actividad . '%')
+                 $eventos = DB::table('actividad')
+                            ->join('subcategoria', 'sub_idsubcategoria', '=', 'act_idsubcategoria')
+                            ->join('recinto', 'act_idlugar', '=', 'rec_idrecinto')
+                            ->select(   'sub_nombre', 
+                                        'act_idactividad', 
+                                        'act_nombre', 
+                                        'act_fechainicio',
+                                        'act_horainicio',
+                                        'act_estatus',      
+                                        'rec_nombre')
+                            ->where('act_nombre', 'LIKE', '%'. $actividad . '%')
                             //->orWhere('a.sub_idSubcategoria', '=', $subcategoria)
                             //->orWhere('a.act_fechaInicio', '=', $fechaInicio)
                             //->orWhere('a.act_horaInicio', '=', $horaInicio)
                             //->orWhere('a.rec_idRecinto', '=', $lugar)
-                            ->orderBy('act_fechaInicio', 'asc') 
+                            ->orderBy('act_fechainicio', 'asc') 
                             ->simplePaginate(10);
 
             } elseif ($lugar) {
 
-                 $eventos = DB::table('actividad as a')
-                            ->join('subcategoria as s', 's.sub_idSubcategoria', '=', 'a.sub_idSubcategoria')
-                            ->join('recinto as r', 'a.rec_idRecinto', '=', 'r.rec_idRecinto')
-                            ->select(   's.sub_nombre', 
-                                        'a.act_idActividad', 
-                                        'a.act_nombre', 
-                                        'a.act_fechaInicio',
-                                        'a.act_horaInicio',
-                                        'a.act_estatus', 
-                                        'r.rec_nombre')
+                 $eventos = DB::table('actividad')
+                            ->join('subcategoria', 'sub_idsubcategoria', '=', 'act_idsubcategoria')
+                            ->join('recinto as r', 'act_idlugar', '=', 'rec_idrecinto')
+                            ->select(   'sub_nombre', 
+                                        'act_idactividad', 
+                                        'act_nombre', 
+                                        'act_fechainicio',
+                                        'act_horainicio',
+                                        'act_estatus', 
+                                        'rec_nombre')
                             //->where('a.act_nombre', 'LIKE', '%'. $actividad . '%')
                             //->orWhere('a.sub_idSubcategoria', '=', $subcategoria)
                             //->orWhere('a.act_fechaInicio', '=', $fechaInicio)
                             //->orWhere('a.act_horaInicio', '=', $horaInicio)
-                            ->where('a.rec_idRecinto', '=', $lugar)
-                            ->orderBy('act_fechaInicio', 'asc') 
+                            ->where('act_idlugar', '=', $lugar)
+                            ->orderBy('act_fechainicio', 'asc') 
                             ->simplePaginate(10);
 
             } elseif ($actividad && $lugar) {
 
-                 $eventos = DB::table('actividad as a')
-                            ->join('subcategoria as s', 's.sub_idSubcategoria', '=', 'a.sub_idSubcategoria')
-                            ->join('recinto as r', 'a.rec_idRecinto', '=', 'r.rec_idRecinto')
-                            ->select(   's.sub_nombre', 
-                                        'a.act_idActividad', 
-                                        'a.act_nombre', 
-                                        'a.act_fechaInicio',
-                                        'a.act_horaInicio',
-                                        'a.act_estatus', 
-                                        'r.rec_nombre')
-                            ->where('a.act_nombre', 'LIKE', '%'. $actividad . '%')
+                 $eventos = DB::table('actividad')
+                            ->join('subcategoria', 'sub_idsubcategoria', '=', 'act_idsubcategoria')
+                            ->join('recinto', 'act_idlugar', '=', 'rec_idrecinto')
+                            ->select(   'sub_nombre', 
+                                        'act_idactividad', 
+                                        'act_nombre', 
+                                        'act_fechainicio',
+                                        'act_horainicio',
+                                        'act_estatus', 
+                                        'rec_nombre')
+                            ->where('act_nombre', 'LIKE', '%'. $actividad . '%')
                             //->orWhere('a.sub_idSubcategoria', '=', $subcategoria)
                             //->orWhere('a.act_fechaInicio', '=', $fechaInicio)
                             //->orWhere('a.act_horaInicio', '=', $horaInicio)
-                            ->where('a.rec_idRecinto', '=', $lugar)
-                            ->orderBy('act_fechaInicio', 'asc') 
+                            ->where('rec_idrecinto', '=', $lugar)
+                            ->orderBy('act_fechainicio', 'asc') 
                             ->simplePaginate(10);
             } else {
 
-                $eventos = DB::table('actividad as a')
-                            ->join('subcategoria as s', 's.sub_idSubcategoria', '=', 'a.sub_idSubcategoria')
-                            ->join('recinto as r', 'a.rec_idRecinto', '=', 'r.rec_idRecinto')
-                            ->select(   's.sub_nombre', 
-                                        'a.act_idActividad', 
-                                        'a.act_nombre', 
-                                        'a.act_fechaInicio',
-                                        'a.act_horaInicio',
-                                        'a.act_estatus', 
-                                        'r.rec_nombre')
+                $eventos = DB::table('actividad')
+                            ->join('subcategoria', 'sub_idsubcategoria', '=', 'act_idsubcategoria')
+                            ->join('recinto', 'act_idlugar', '=', 'rec_idrecinto')
+                            ->select(   'sub_nombre', 
+                                        'act_idactividad', 
+                                        'act_nombre', 
+                                        'act_fechainicio',
+                                        'act_horainicio',
+                                        'act_estatus', 
+                                        'rec_nombre')
                             //->where('a.act_nombre', 'LIKE', '%'. $actividad . '%')
                             //->orWhere('a.sub_idSubcategoria', '=', $subcategoria)
                             //->orWhere('a.act_fechaInicio', '=', $fechaInicio)
                             //->orWhere('a.act_horaInicio', '=', $horaInicio)
                             //->orWhere('a.rec_idRecinto', '=', $lugar)
-                            ->orderBy('act_fechaInicio', 'asc') 
+                            ->orderBy('act_fechainicio', 'asc') 
                             ->simplePaginate(10);
 
             }
@@ -155,9 +157,36 @@ class EventosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EventosFormRequest $request)
-    {
-        $evento = new Evento($request->all());
+    public function store(EventosFormRequest $request){
+
+        $bitacora = new Bitacora(array(
+            'bit_dispositivo' => $request->get('bit_dispositivo'),
+            'bit_navegador' => $request->get('bit_navegador'),
+            'bit_direccionip' => $request->get('bit_direccionip'),
+            'bit_idusuario' => $request->get('bit_idusuario') 
+        ));
+
+        $bitacora->save();
+
+        //  dd($bitacora);
+
+        $evento = new Evento(array(
+            'act_nombre' => $request->get('act_nombre'), 
+            'act_tipo' => $request->get('act_tipo'),
+            'act_responsable' => $request->get('act_responsable'),
+            'act_numeropuntos' => $request->get('act_numeropuntos'),
+            'act_descripcion' => $request->get('act_descripcion'),
+            'act_estatus' => $request->get('act_estatus'),
+            'act_idarea' => $request->get('act_idarea'),
+            'act_idsubcategoria' => $request->get('act_idsubcategoria'),
+            'act_idlugar' => $request->get('act_idlugar'),
+            'act_fechainicio' => $request->get('act_fechainicio'),
+            'act_fechafin' => $request->get('act_fechafin'),
+            'act_horainicio' => $request->get('act_horainicio'),
+            'act_horafin' => $request->get('act_horafin')
+
+        ));
+        $evento->act_idbitacora = $bitacora->bit_idbitacora;
         $evento->save();
 
         return redirect('/eventos')->with('status', 'El evento '. $evento->act_nombre . 'ha sido registrado exitosamente');
@@ -175,8 +204,11 @@ class EventosController extends Controller
         //$evento = Evento::find($id);
 
         $evento = DB::table('actividad')
-                            //->select('act_nombre')
-                            ->where('act_idActividad', '=', $id)->get();
+                            ->join('bitacora', 'act_idbitacora', '=', 'bit_idbitacora')
+                            ->join('usuario', 'bit_idusuario', '=', 'id')
+                            ->select('act_nombre', 'usu_nombre', 'act_responsable', 'act_fechainicio', 'act_fechafin', 'act_horainicio', 'act_horafin', 'act_numeropuntos', 'act_estatus', 'act_descripcion', 'usu_nombre')
+                            ->where('act_idactividad', '=', $id)->get();
+
         $recintos = DB::table('recinto')->get();
         $subcategorias = DB::table('subcategoria')->get();
 
@@ -191,7 +223,23 @@ class EventosController extends Controller
      */
     public function edit($id)
     {
-        $evento = Evento::find($id);
+        //$evento = Evento::find($id);
+        $evento = DB::table('actividad')
+                            ->join('bitacora', 'act_idbitacora', '=', 'bit_idbitacora')
+                            ->join('usuario', 'bit_idusuario', '=', 'id')
+                            ->select(   'act_nombre',  
+                                        'act_responsable', 
+                                        'act_fechainicio', 
+                                        'act_fechafin', 
+                                        'act_horainicio', 
+                                        'act_horafin', 
+                                        'act_numeropuntos', 
+                                        'act_estatus', 
+                                        'act_descripcion', 
+                                        'usu_nombre', 
+                                        'act_idactividad',
+                                        'usu_nombre')
+                            ->where('act_idactividad', '=', $id)->get();    
         $recintos = DB::table('recinto')->get();
         $subcategorias = DB::table('subcategoria')->get();
 
@@ -210,16 +258,16 @@ class EventosController extends Controller
         $evento = Evento::find($id)->update(array(
             'act_nombre' => $request->input('act_nombre'),
             'act_responsable' => $request->input('act_responsable'),
-            'act_fechaInicio' => $request->input('act_fechaInicio'),
-            'act_fechaFin' => $request->input('act_fechaFin'), 
-            'act_horaInicio' => $request->input('act_horaInicio'),
-            'act_horaFin' => $request->input('act_horaFin'),
-            'act_numeroPuntos' => $request->input('act_numeroPuntos'),
+            'act_fechainicio' => $request->input('act_fechainicio'),
+            'act_fechafin' => $request->input('act_fechafin'), 
+            'act_horainicio' => $request->input('act_horainicio'),
+            'act_horafin' => $request->input('act_horafin'),
+            'act_numeropuntos' => $request->input('act_numeropuntos'),
             'act_descripcion' => $request->input('act_descripcion'),
             'act_estatus' => $request->input('act_estatus'),
-            'ar_idArea' => $request->input('ar_idArea'),
-            'sub_idSubcategoria' => $request->input('sub_idSubcategoria'),
-            'rec_idRecinto' => $request->input('rec_idRecinto')
+            'act_idarea' => $request->input('act_idarea'),
+            'act_idsubcategoria' => $request->input('act_idsubcategoria'),
+            'act_idlugar' => $request->input('act_idlugar')
         ));
 
         return redirect('/eventos')->with('status', 'El registro del evento ha sido actualizado exitosamente');
@@ -256,18 +304,18 @@ class EventosController extends Controller
 
     public function mostrarDetallesEvento($id){
 
-        $evento = DB::table('grupo as g')
-                ->join('inscripción', 'insIdGrupo', '=', 'gruIdGrupo')
-                ->join('actividad as a', 'gruIdActividad', '=', 'act_idActividad')
+        $evento = DB::table('grupo')
+                ->join('inscripción', 'insidgrupo', '=', 'gruidgrupo')
+                ->join('actividad', 'gruidactividad', '=', 'act_idactividad')
                 ->select(   'act_nombre', 
-                            'act_idActividad', 
-                            'act_numeroPuntos', 
-                            'insIdAlumno')
-                ->where('act_idActividad', '=', $id)
+                            'act_idactividad', 
+                            'act_numeropuntos', 
+                            'insidalumno')
+                ->where('gruidactividad', '=', $id)
                 ->get();
 
         for ($i=0; $i < count($evento); $i++) { 
-            $numerosCuenta[] = $evento[$i]->insIdAlumno;
+            $numerosCuenta[] = $evento[$i]->insidalumno;
         }
 
         //dd($numerosCuenta);
@@ -309,15 +357,19 @@ class EventosController extends Controller
         return view('eventos.reportesIndex', compact('evento', 'alumnosR', 'inscripcion'));
     }
 
-    public function cargarPuntos($id){
+    public function subirPuntos($id){
 
         $evento = DB::table('actividad')
+                ->join('grupo', 'gruidgrupo', '=', 'act_idactividad')
+                ->join('inscripción', 'gruidgrupo', '=', 'insidgrupo')
                 ->select(   'act_nombre as actividad', 
-                            'act_fechaInicio', 
+                            'act_fechainicio', 
                             'act_responsable', 
-                            'act_horaInicio')
-                ->where('act_idActividad', '=', $id)
-                ->get();
+                            'act_horainicio',
+                            'act_idactividad',
+                            'gruidgrupo')
+                ->where('act_idactividad', '=', $id)
+                ->first();
 
         //dd($evento);
 
@@ -325,11 +377,107 @@ class EventosController extends Controller
     }
 
 
+    public function registrarPuntos(Request $request){
+
+            //Hacemos una consulta de todas las actividades posibles.
+        $eventos = DB::table('actividad')->get();
+
+
+            //Conexion a la base de datos de AE, para consultar a los alumnos si se encuentran o no registrados.
+        $connString = "host=rigel.fca.unam.mx dbname=li313304901 user=li313304901 password=rigelFCA";
+        $db = pg_connect($connString) or die('connection failed');
+
+            //Obtenemos los numeros de cuenta y los indexamos en un arreglo.
+        $numerosCuenta = $request->get('numeros');
+        $numeros = explode("\r\n", $numerosCuenta);
+        $numerosCuenta2 = explode("\r\n", $numerosCuenta);
+
+        //dd($numeros);
+
+            //Hacemos la consulta de los alumnos que se ingresaron.
+        for ($i=0; $i < count($numeros); $i++) { 
+
+            $alumnos[] = pg_query($db, "    select  alumIdAlumno
+                                            from alumno, alumno_planEstudios, planEstudios, carrera
+                                            where alumIdAlumno = alplaIdAlumno
+                                            and plesIdPlan = alplaIdPlanEstudios
+                                            and plesIdCarrera = carrIdCarrera
+                                            and alumIdAlumno =". substr($numeros[$i], 0, 9));
+           
+            $alumnosR[] = pg_fetch_row($alumnos[$i]);
+
+            /*if($clave = array_search(false, $alumnosR) != false){
+                unset($alumnosR[$clave]);
+            }*/
+        }
+
+        //substr($numeros[$i], 0, 9)
+        //dd($alumnosR);
+
+            //debemos de comparar los numeros de cuenta que estan en la base de datos y los que no.
+
+        for ($i=0; $i < count($alumnosR); $i++) { 
+            for ($a=0; $a < 1; $a++) { 
+                $resultado[] = $alumnosR[$i][$a];
+            }
+        }
+
+            //Este arreglos no regresa los numeros de cuenta que se ingresaron pero que no están en la base de datos.
+        $resultado2 = array_diff_assoc($numeros, $resultado); 
+        //dd($resultado2);
+
+
+            //Recorremos el arreglo de los numeros de cuenta que se ingresaron para saber si hay numeros de cuenta que no son numeros de cuenta y son numeros de cuenta de algun maestro.
+
+        $contador2 = 0;
+        for($b=0; $b < count($numerosCuenta2); $b++){
+            if(strlen($numerosCuenta2[$b]) > 9){
+                $contador2=$contador2+1;
+            }
+        }
+
+        //dd($contador2);
+
+        //dd($alumnosR);
+        array_filter($alumnosR);
+        //dd(count(array_values($alumnosR)));
+
+        if ($contador2 >= 2) {
+
+            return view('eventos.eventos', compact('numerosCuenta', 'contador2', 'eventos', 'numerosValidados', 'resultado2'));
+
+            $pdf = PDF::loadView('eventos.numerosNR', compact('resultado2'));
+            return $pdf->download('numeros de cuenta no validos.pdf');
+
+        } else {
+
+            //dd($numeros);
+            $fecha = new \DateTime();
+
+            $contador = 0;
+
+            while ($contador < count(array_filter($alumnosR))) {
+                    $inscripcion = new Inscripcion(array(
+                    'insidgrupo' => $request->input('insidgrupo'),
+                    'insidalumno' => $alumnosR[$contador][0],
+                    'insfechainscripcion' => $fecha,
+                    'insestatus' => 'Registrado'
+                ));
+
+                $inscripcion->save();
+                $contador=$contador+1;
+            }
+
+            return redirect('/eventos')->with('status', 'Se han registrado los numeros de cuenta exitosamente');
+        }
+    }
+
+
     public function generarReporte($id){
 
         $evento = DB::table('actividad')
-                ->select('act_nombre', 'act_idActividad')
-                ->where('act_idActividad', '=', $id)
+                ->select('act_nombre', 'act_idactividad')
+                ->where('act_idactividad', '=', $id)
                 ->get();
 
         $connString = "host=rigel.fca.unam.mx dbname=li313304901 user=li313304901 password=rigelFCA";
@@ -352,3 +500,4 @@ class EventosController extends Controller
         return $pdf->download('reporte.pdf');
     }
 }
+

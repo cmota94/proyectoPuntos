@@ -28,6 +28,7 @@
   <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
   <link href="{{ asset('lib/venobox/venobox.css') }}" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/estilos.css') }}">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
   <!-- Nivo Slider Theme -->
   <link href="{{ asset('css/nivo-slider-theme.css') }}" rel="stylesheet">
@@ -74,7 +75,7 @@
                     <a class="page-scroll" href="{{ url('eventos/') }}"><span class="fa-home fa"></span>Home</a>
                   </li>
                   <!-- Titular cultural -->
-                  @if (Auth::user()->rol_idRol == 1)
+                     @if (Auth::user()->usu_idrol == 1)
 
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -125,7 +126,7 @@
                       </ul>
                   </li>
                   <!-- Responsable cultural -->
-                  @elseif (Auth::user()->rol_idRol == 2)
+                  @elseif (Auth::user()->usu_idrol == 2)
 
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -177,7 +178,7 @@
                   </li>
                   
                   <!-- Titular de responsabilidad social-->
-                  @elseif (Auth::user()->rol_idRol == 3)
+                  @elseif (Auth::user()->usu_idrol == 3)
 
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -229,7 +230,7 @@
                   </li>
 
                    <!-- Responsable de responsabilidad social-->
-                  @elseif (Auth::user()->rol_idRol == 4)
+                  @elseif (Auth::user()->usu_idrol == 4)
 
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -282,7 +283,7 @@
                   </li>
 
                    <!-- Titular deportivo -->
-                  @elseif (Auth::user()->rol_idRol == 5)
+                  @elseif (Auth::user()->usu_idrol == 5)
 
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -334,7 +335,7 @@
                   </li>
 
                    <!-- Responsable deportivo-->
-                  @elseif (Auth::user()->rol_idRol == 6)
+                  @elseif (Auth::user()->usu_idrol == 6)
 
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -387,7 +388,7 @@
                   </li>
 
                    <!-- Responsable proyectos especiales-->
-                  @elseif (Auth::user()->rol_idRol == 7)
+                  @elseif (Auth::user()->usu_idrol == 7)
 
                     
                     <li class="dropdown">
@@ -403,7 +404,7 @@
                     </li>
 
                     <!-- Administracion escolar -->
-                  @elseif (Auth::user()->rol_idRol == 8)
+                  @elseif (Auth::user()->usu_idrol == 8)
 
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -418,7 +419,7 @@
                     </li>
                   
                    <!-- Administrador del sistema -->
-                  @elseif (Auth::user()->rol_idRol == 9)
+                  @elseif (Auth::user()->usu_idrol == 11)
 
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -441,6 +442,7 @@
                         <li>
                           <a href="{{ url('/eventos/constancias') }}" style="color: black">Generar constancia <span class="fa fa-book"></span></a>
                           <a href="{{ url('/eventos/cartas') }}" style="color: black">Generar carta exprés <span class="fa-envelope-o fa"></span></a>
+                          <a href="{{ url('/eventos/historialIndex') }}" style="color: black">Historial puntos <span class="fa fa-list-alt "></span></a>
                         </li>
                       </ul>
                     </li>
@@ -468,12 +470,28 @@
                         </li>
                       </ul>
                     </li>
-                  @endif
+
+                    @elseif (Auth::user()->usu_idrol == 12)
+
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Administrar Eventos<span class="caret"></span>
+                      </a>
+         
+                      <ul class="dropdown-menu" role="menu">
+                        <li>
+                          <a href="{{ url('/eventos') }}" style="color: black">Buscar <span class="fa fa-search "></span></a>
+                          <a href="{{ url('/eventos/registrar') }}" style="color: black">Registrar <span class="fa fa-pencil "></span></a>
+                        </li>
+                      </ul>
+                    </li>                
+                    @endif
+                  
 
                   <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         <span class="fa fa-user-o"></span>
-                        {{ Auth::user()->usu_nombre }} <span class="caret"></span>
+                           {{ Auth::user()->usu_nombre }} <span class="caret"></span>
                       </a>
          
                       <ul class="dropdown-menu" role="menu">
@@ -538,6 +556,7 @@
   <script src="{{ asset('lib/appear/jquery.appear.j') }}s"></script>
   <script src="{{ asset('lib/isotope/isotope.pkgd.min.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
   
   
 

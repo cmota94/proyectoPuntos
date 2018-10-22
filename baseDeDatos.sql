@@ -137,7 +137,7 @@ INSERT INTO rol(rol_nombre) VALUES('Responsable cultural');
 INSERT INTO rol(rol_nombre) VALUES('Titular responsabilidad social');
 INSERT INTO rol(rol_nombre) VALUES('Responsable responsabilidad social');
 INSERT INTO rol(rol_nombre) VALUES('Titular deportivo');
-INSERT INTO rol(rol_nombre) VALUES('Responsable deportivo');
+INSERT INTO rol(rol_nombre) VALUES('Responsable deportivo');			
 INSERT INTO rol(rol_nombre) VALUES('Responsable proyectos especiales');
 INSERT INTO rol(rol_nombre) VALUES('Administración escolar');
 INSERT INTO rol(rol_nombre) VALUES('Administrador del sistema');
@@ -364,6 +364,44 @@ INSERT INTO alumno(alumIdAlumno, alumNombre, alumApellidoPaterno, alumApellidoMa
 VALUES(303255930, 'Karla L', 'Sanchez', 'Macario');
 INSERT INTO alumno(alumIdAlumno, alumNombre, alumApellidoPaterno, alumApellidoMaterno) 
 VALUES(306188664, 'Ana L', 'Lazo', 'Ojeda');
+
+
+
+
+
+INSERT INTO alumno(alumIdAlumno, alumNombre, alumApellidoPaterno, alumApellidoMaterno) 
+VALUES(305108832, 'Cecia', 'Gomez', 'Castañeda');
+INSERT INTO alumno(alumIdAlumno, alumNombre, alumApellidoPaterno, alumApellidoMaterno) 
+VALUES(304243565, 'Dulce', 'Martinez', 'Bustamante');
+INSERT INTO alumno(alumIdAlumno, alumNombre, alumApellidoPaterno, alumApellidoMaterno) 
+VALUES(305219310, 'Alejandro', 'Nunfio', 'Spinola');
+INSERT INTO alumno(alumIdAlumno, alumNombre, alumApellidoPaterno, alumApellidoMaterno) 
+VALUES(305269872, 'Monica', 'Cortes', 'Bravo');
+INSERT INTO alumno(alumIdAlumno, alumNombre, alumApellidoPaterno, alumApellidoMaterno) 
+VALUES(099195061, 'Luis', 'Martinez', 'Medina');
+INSERT INTO alumno(alumIdAlumno, alumNombre, alumApellidoPaterno, alumApellidoMaterno) 
+VALUES(408025241, 'Abelardo', 'Duran', 'Jimenez');
+INSERT INTO alumno(alumIdAlumno, alumNombre, alumApellidoPaterno, alumApellidoMaterno) 
+VALUES(099123822, 'Ruffo', 'Garzon', 'Benitez');
+INSERT INTO alumno(alumIdAlumno, alumNombre, alumApellidoPaterno, alumApellidoMaterno) 
+VALUES(305019691, 'Alfredo', 'Sanjuan', 'Ramirez');
+INSERT INTO alumno(alumIdAlumno, alumNombre, alumApellidoPaterno, alumApellidoMaterno) 
+VALUES(305136105, 'Juo', 'Vargas', 'Mejia');
+INSERT INTO alumno(alumIdAlumno, alumNombre, alumApellidoPaterno, alumApellidoMaterno) 
+VALUES(408040132, 'Luis', 'Pacheco', 'Martinez');
+
+INSERT INTO alumno_planEstudios(alplaidplanestudios, alplaidalumno) VALUES(13, 305108832);
+INSERT INTO alumno_planEstudios(alplaidplanestudios, alplaidalumno) VALUES(7, 304243565);
+INSERT INTO alumno_planEstudios(alplaidplanestudios, alplaidalumno) VALUES(9, 305219310);
+INSERT INTO alumno_planEstudios(alplaidplanestudios, alplaidalumno) VALUES(17, 305269872);
+INSERT INTO alumno_planEstudios(alplaidplanestudios, alplaidalumno) VALUES(12, 099195061);
+INSERT INTO alumno_planEstudios(alplaidplanestudios, alplaidalumno) VALUES(16, 408025241);
+INSERT INTO alumno_planEstudios(alplaidplanestudios, alplaidalumno) VALUES(4, 099123822);
+INSERT INTO alumno_planEstudios(alplaidplanestudios, alplaidalumno) VALUES(8, 305019691);
+INSERT INTO alumno_planEstudios(alplaidplanestudios, alplaidalumno) VALUES(1, 305136105);
+INSERT INTO alumno_planEstudios(alplaidplanestudios, alplaidalumno) VALUES(20, 408040132);
+
+
 
 
 

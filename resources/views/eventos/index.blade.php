@@ -56,8 +56,8 @@
 							<td>
 								<a href="*" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Presiona para ver los detalles del usuario">{!! $evento->act_nombre !!}</a>
 							</td>
-							<td>{!! $evento->act_fechaInicio !!}</td>
-							<td>{!! $evento->act_horaInicio !!}</td>
+							<td>{!! $evento->act_fechainicio !!}</td>
+							<td>{!! $evento->act_horainicio !!}</td>
 							<td>{!! $evento->rec_nombre !!}</td>
 							@if ($evento->act_estatus == 'Por realizar')
 								<td><button class="btn btn-info active">{!! $evento->act_estatus !!}</button></td>
@@ -67,31 +67,38 @@
 							
 							<td colspan="4">
 
-								<form action="{{ url('/eventos/estatus/'.$evento->act_idActividad)}}" method="post">
-									<input type="hidden" name="_token" value="{!! csrf_token() !!}"> 
-				      				<button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Cambiar estatus"><span class="fa fa-refresh"></span></button>
+								<form action="{{ url('/eventos/estatus/'.$evento->act_idactividad)}}" method="post">
+									<input type="hidden" name="_token" value="{!! csrf_token() !!}">
+									@if (Auth::user()->usu_idrol != 12)
+									 	<button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Cambiar estatus"><span class="fa fa-refresh"></span></button>
+									 
+				      				
 
-				      				@if ($fechaActual->format('Y-m-d') <= $evento->act_fechaInicio)
+					      				@if ($fechaActual->format('Y-m-d') <= $evento->act_fechainicio)
 
-										<a class="btn btn-default" href="{!! action('EventosController@edit', $evento->act_idActividad) !!}" data-toggle="tooltip" data-placement="top" title="Editar"><span class="fa fa-pencil-square-o"></span></a>
+											<a class="btn btn-default" href="{!! action('EventosController@edit', $evento->act_idactividad) !!}" data-toggle="tooltip" data-placement="top" title="Editar"><span class="fa fa-pencil-square-o"></span></a>
 
-									@elseif($fechaActual->format('Y-m-d') >= $evento->act_fechaInicio)
+										@elseif($fechaActual->format('Y-m-d') >= $evento->act_fechainicio)
 
-										<a class="btn btn-default" href="{!! action('EventosController@show', $evento->act_idActividad) !!}" data-toggle="tooltip" data-placement="top" title="Consultar"><span class="fa fa-pencil-square-o"></span></a>
+											<a class="btn btn-default" href="{!! action('EventosController@show', $evento->act_idactividad) !!}" data-toggle="tooltip" data-placement="top" title="Consultar"><span class="fa fa-pencil-square-o"></span></a>
 
-									@endif
-							   
-
-								   <a href="{!! action('EventosController@mostrarDetallesEvento', $evento->act_idActividad) !!}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Generar reporte"><span class="fa fa-file-text-o "></span></a>
+										@endif
 								   
-								   <a href="{!! action('EventosController@cargarPuntos', $evento->act_idActividad) !!}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Subir puntos"><span class="fa fa-upload "></span></a>
 
-								   <a href="{{ url('/inscripciones/registrar/'.$evento->act_idActividad) }}" class="btn btn-default"><span class="fa fa-list-alt " data-toggle="tooltip" data-placement="top" title="Inscribir"></span></a>
+									   <a href="{!! action('EventosController@mostrarDetallesEvento', $evento->act_idactividad) !!}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Generar reporte"><span class="fa fa-file-text-o "></span></a>
+
+									   <a href="{{ url('/inscripciones/registrar/'.$evento->act_idactividad) }}" class="btn btn-default"><span class="fa fa-pencil " data-toggle="tooltip" data-placement="top" title="Inscribir"></span></a>
+									
+								   @endif
+								   
+								   <a href="{!! action('EventosController@subirPuntos', $evento->act_idactividad) !!}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Subir puntos"><span class="fa fa-upload "></span></a>
+
+								   
 					      			</form>
 
 					      			
 
-							   <!--<a href="{!! action('EventosController@cambiarEstatus', $evento->act_idActividad) !!}" class="btn btn-default" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Metros."><span class="fa-refresh fa"></span></a>-->
+							   <!--<a href="{!! action('EventosController@cambiarEstatus', $evento->act_idactividad) !!}" class="btn btn-default" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Metros."><span class="fa-refresh fa"></span></a>-->
 
 								
 							</td>
@@ -125,13 +132,13 @@
 			          		<label for="nombre">Subcategoría:</label>
 			          		<select class="form-control" name="subcategoria">
 			          			@foreach ($categorias as $categoria)
-			          				<option value="{{ $categoria->sub_idSubcategoria }}">{{ $categoria->sub_nombre }}</option>
+			          				<option value="{{ $categoria->sub_idsubcategoria }}">{{ $categoria->sub_nombre }}</option>
 			          			@endforeach
 			          		</select>
 			          	</div>-->
 			        <div class="form-group col-md-4 text-center col-md-offset-2">
 			          		<label for="nombre">Nombre de la actividad:</label>
-			          		<input type="text" name="actividad" class="form-control">
+			          		<input type="search" name="actividad" class="form-control">
 			        </div>
 			          	<!--<div class="form-group col-md-3">
 			          		<label>Fecha de inicio:</label>
@@ -148,7 +155,7 @@
 		          		<select class="form-control" name="lugar">
 		          			<option value=""></option>
 		          			@foreach ($recintos as $recinto)
-								<option value="{{ $recinto->rec_idRecinto }}">{{ $recinto->rec_nombre }}</option>		          			
+								<option value="{{ $recinto->rec_idrecinto }}">{{ $recinto->rec_nombre }}</option>		          			
 							@endforeach
 		          		</select><br>
 		          	</div><br>

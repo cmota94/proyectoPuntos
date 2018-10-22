@@ -22,21 +22,21 @@
 			</thead>
 			<tbody>
 				@for ($j = 0; $j < count($alumnosR); $j++)
-					@for ($i = 0; $i < 5; $i++)
+					@for ($i = 0; $i < 1; $i++)
 						<tr>
-							<th class="text-center">{{ $alumnosR[$j][$i] }}</th>
-							<td class="text-center">{!! $evento[0]->insIdAlumno  !!}</td>
-							<td class="text-center">{{ $alumnosR[$j][$i] }} </td>
-							<td class="text-center">{{ $alumnosR[$j][$i] }} </td>
-							<td class="text-center">{!! $evento[0]->act_numeroPuntos !!}</td>
-						</tr>	
+							<td class="text-center">{{ $alumnosR[$j][0] . " " . $alumnosR[$j][1] . " " . $alumnosR[$j][2]}}</td>
+							<td class="text-center">{!! $alumnosR[$j][3]  !!}</td>
+							<td class="text-center">{{ $alumnosR[$j][4] }} </td>
+							<td class="text-center">{{ $alumnosR[$j][5] }} </td>
+							<td class="text-center">{!! $evento[0]->act_numeropuntos !!}</td>
+						</tr>
 					@endfor
 				@endfor
 			</tbody>
 		</table>
 	</div>
 	<div class="text-center">
-		<a href="{!! action('EventosController@generarReporte', $evento[0]->act_idActividad) !!}" class="btn btn-primary"><span class="fa fa-download"></span> Descargar</a>
+		<a href="{!! action('EventosController@generarReporte', $evento[0]->act_idactividad) !!}" class="btn btn-primary"><span class="fa fa-download"></span> Descargar</a>
 		<a href="{{ url('/eventos') }}" class="btn btn-default"><span class="fa fa-ban"></span> Salir</a>
 	</div>
 </div>		

@@ -24,9 +24,9 @@ class FormUsuariosRequest extends FormRequest
     public function rules()
     {
         return [
-            'usu_nombre' => 'required|max:30|alpha',
-            'usu_apellidoPaterno' => 'required|max:20|alpha',
-            'usu_apellidoMaterno' => 'required|max:20|alpha',
+            'usu_nombre' => 'required|max:30',
+            'usu_apellidopaterno' => 'required|max:20|alpha',
+            'usu_apellidomaterno' => 'required|max:20|alpha',
             'usu_estatus' => 'required|max:10|alpha',
             'email' => 'string|max:50'
 

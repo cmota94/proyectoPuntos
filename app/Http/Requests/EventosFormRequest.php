@@ -26,12 +26,12 @@ class EventosFormRequest extends FormRequest
         return [
             'act_nombre' => 'required|max:150',
             'act_responsable' => 'required|max:100',
-            'act_fechaInicio' => 'required',
-            'act_fechaFin' => 'required',
-            'act_horaInicio' => 'required',
-            'act_horaFin' => 'required',
-            'act_numeroPuntos' => 'required|max:15|numeric',
-            'rec_idRecinto' => 'required',
+            'act_fechainicio' => 'required',
+            'act_fechafin' => 'required',
+            'act_horainicio' => 'required',
+            'act_horafin' => 'required',
+            'act_numeropuntos' => 'required|max:15|numeric',
+            'act_idlugar' => 'required',
             'act_estatus' => 'required'
         ];
     }

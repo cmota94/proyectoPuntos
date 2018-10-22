@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', '- constancias')
+@section('title', '- historial')
 
 @section('contenido')
 
@@ -14,7 +14,7 @@
 		<!-- Principio del buscador -->
 		<div class="row">
 			<div class="col-sm-4 col-md-8 col-md-offset-1">
-				<h2 class="page-header"><span class="fa fa-book"></span> Constancias </h2>
+				<h2 class="page-header"><span class="fa fa-list-alt "></span> Historial alumnos </h2>
 			</div><br><br>
 			<div class="col-md-1 col-md-offset-1">
 				<button type="button" data-toggle="modal" data-target="#modalbuscar" class="btn btn-primary">Buscar <span class="fa fa-search"></span></button>
@@ -46,24 +46,40 @@
 					</tr>
 				</thead>
 				<tbody>
-					@while ($row = pg_fetch_row($alumnos))
-						<tr>
-							<th class="text-center">{!! $row[0]  !!}</th>
-							<td class="text-center">{!! $row[1]  !!}</td>
-							<td class="text-center">{!! $row[2]  !!}</td>
-							<td class="text-center">{!! $row[3]  !!}</td>
-							<td><a href="{!! action('PuntosController@generarConstancia', $row[0]) !!}" class="btn btn-default"><span class="fa fa-download"></span></a></td>
-						</tr>
-					@endwhile	
+					<tr>
+						<td>414363831</td>
+						<td>Ma. Guadalupe</td>
+						<td>Damián</td>
+						<td>Contreras</td>
+						<td>
+							<button data-toggle="tooltip" data-placement="top" title="Descargar" class="btn btn-small btn-default"><span class="fa fa-floppy-o "></span></button>
+						</td>
+					</tr>
+					<tr>
+						<td>313304901</td>
+						<td>César Jair</td>
+						<td>Mota</td>
+						<td>Sánchez</td>
+						<td>
+							<a href="{{ url('/eventos/historialIndex/historial') }}" class="btn btn-small btn-default" data-toggle="tooltip" data-placement="top" title="Descargar"><span class="fa fa-floppy-o "></span></a>
+						</td>
+					</tr>
+					<tr>
+						<td>325678931</td>
+						<td>Francisco</td>
+						<td>Pérez</td>
+						<td>Martínez</td>
+						<td>
+							<button class="btn btn-small btn-default" data-toggle="tooltip" data-placement="top" title="Descargar"><span class="fa fa-floppy-o "></span></button>
+						</td>
+					</tr>
+					
 				</tbody>
 			</table>
 		</div>
 		<div class="text-center">
-			<form action="" method="post" class="form inline">
-				<input type="" name="">
-				<button class="btn btn-primary" type="submit"><span class="fa fa-files-o"></span> Descargar todas</button>
-			</form>
-			<a href="" class="btn btn-default<span class="fa fa-ban"></span> Cancelar<a>
+			<!--<button class="btn btn-primary"><span class="fa fa-files-o"></span> Descargar</button>-->
+			<button class="btn btn-default"><span class="fa fa-chevron-circle-left "></span> Regresar</button>
 		</div>
 		</div>		
 
@@ -79,7 +95,7 @@
         </div>
         <div class="modal-body">
         	<div class="row">
-	        	<form action=" {{ url('/eventos/constancias') }}" method="post">
+	        	<form action=" {{ url('/eventos/cargar') }}" method="post">
 	        		<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 	        		<div class="row text-center">
 	        			<div class="col-md-12">

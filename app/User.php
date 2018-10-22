@@ -15,19 +15,21 @@ class User extends Authenticatable
      * @var array
      */
 
+
     protected $table = 'usuario';
     protected $primaryKey = 'id';
+    public $timestamps = false;
 
     protected $fillable = [
         'usu_nombre', 
-        'usu_apellidoPaterno',
-        'usu_apellidoMaterno',
+        'usu_apellidopaterno',
+        'usu_apellidomaterno',
         'usu_estatus',
         'email', 
         'password',
-        'mod_idModulo',
-        'ar_idArea',
-        'rol_idRol'
+        //'usu_idmodulo',
+        'usu_idarea',
+        'usu_idrol',
     ];
 
     /**
@@ -36,6 +38,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
 }
+
+
+//'remember_token'

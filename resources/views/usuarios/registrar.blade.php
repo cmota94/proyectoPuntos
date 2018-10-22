@@ -42,45 +42,37 @@
 		          	</div>
 		          	<div class="form-group col-md-4">
 		          		<label>Apellido paterno:</label>
-		          		<input type="text" name="usu_apellidoPaterno" class="form-control">
+		          		<input type="text" name="usu_apellidopaterno" class="form-control">
 		          	</div>
 		          	<div class="form-group col-md-4">
 		          		<label>Apellido materno:</label>
-		          		<input type="text" name="usu_apellidoMaterno" class="form-control">
+		          		<input type="text" name="usu_apellidomaterno" class="form-control">
 		          	</div>
 		          	<div class="form-group col-md-3">
 		          		<label>Correo electrónico:</label>
 		          		<input type="text" name="email" class="form-control">
 		          	</div>
-		          	<!--<div class="form-group col-md-3">
+		          	<div class="form-group col-md-3">
 		          		<label>Contraseña:</label>
 		          		<input type="password" name="password" class="form-control">
 		          	</div>
 		          	<div class="form-group col-md-3">
 		          		<label>Confirmación de contraseña:</label>
 		          		<input type="password" name="password" class="form-control">
-		          	</div>-->
-		          	<div class="form-group col-md-3">
-		          		<label>Modulos permitidos:</label>
-		          		<select class="form-control" name="mod_idModulo">
-		          			@foreach ($modulos as $modulo)
-								<option value="{{ $modulo->mod_idModulo }}">{{ $modulo->mod_nombre }}</option>
-		          			@endforeach
-		          		</select>
 		          	</div>
 		          	<div class="form-group col-md-2">
 		          		<label>Área:</label>
-		          		<select class="form-control" name="rol_idRol">
+		          		<select class="form-control" name="usu_idarea">
 		          			@foreach ($areas as $area)
-								<option value="{{ $area->ar_idArea }}">{{ $area->ar_nombre }}</option>
+								<option value="{{ $area->ar_idarea }}">{{ $area->ar_nombre }}</option>
 		          			@endforeach
 		          		</select>
 		          	</div>
 		          	<div class="form-group col-md-2">
 		          		<label>Rol:</label>
-		          		<select class="form-control" name="rol_idRol">
+		          		<select class="form-control" name="usu_idrol">
 		          			@foreach ($roles as $rol)
-								<option value="{{ $rol->rol_idRol }}">{{ $rol->rol_nombre }}</option>
+								<option value="{{ $rol->rol_idrol }}">{{ $rol->rol_nombre }}</option>
 		          			@endforeach
 		          		</select>
 		          	</div>

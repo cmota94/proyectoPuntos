@@ -55,26 +55,26 @@
           		<label>Subcategoría:</label>
           		<select class="form-control" name="sub_idSubcategoria" disabled="">
       					@foreach ($subcategorias as $subcategoria)
-      						<option value="{{ $subcategoria->sub_idSubcategoria }}">{{ $subcategoria->sub_nombre }}</option>
+      						<option value="{{ $subcategoria->sub_idsubcategoria }}">{{ $subcategoria->sub_nombre }}</option>
       					@endforeach
           		</select>
           	</div>
 			
           	<div class="form-group col-md-3">
           		<label>Fecha inicio del evento:</label>
-          		<input type="date" name="act_fechaInicio" class="form-control" value="{{ $evento[0]->act_fechaInicio }}" disabled="">
+          		<input type="date" name="act_fechaInicio" class="form-control" value="{{ $evento[0]->act_fechainicio }}" disabled="">
           	</div>
           	<div class="form-group col-md-2">
           		<label>Fecha fin del evento:</label>
-          		<input type="date" name="act_fechaFin" class="form-control" value="{{ $evento[0]->act_fechaFin }}" disabled="">
+          		<input type="date" name="act_fechaFin" class="form-control" value="{{ $evento[0]->act_fechafin }}" disabled="">
           	</div>
           	<div class="form-group col-md-3">
           		<label>Hora inicio del evento:</label>
-          		<input type="time" name="act_horaInicio" class="form-control" value="{{ $evento[0]->act_horaInicio }}" disabled="">
+          		<input type="time" name="act_horaInicio" class="form-control" value="{{ $evento[0]->act_horainicio }}" disabled="">
           	</div>
           	<div class="form-group col-md-2">
           		<label>Hora fin del evento:</label>
-          		<input type="time" name="act_horaFin" class="form-control" value="{{ $evento[0]->act_horaFin }}" disabled="">
+          		<input type="time" name="act_horaFin" class="form-control" value="{{ $evento[0]->act_horafin }}" disabled="">
           	</div>
           	<div class="form-group col-md-4">
           		<label>Lugar del evento:</label>
@@ -86,7 +86,7 @@
           	</div>
           	<div class="form-group col-md-2">
           		<label>Puntos otorgados:</label>
-          		<input input[type=number] { -moz-appearance:textfield; } name="act_numeroPuntos" class="form-control" value="{{ $evento[0]->act_numeroPuntos }}" disabled="">
+          		<input input[type=number] { -moz-appearance:textfield; } name="act_numeroPuntos" class="form-control" value="{{ $evento[0]->act_numeropuntos }}" disabled="">
           	</div>
           		<div class="form-group col-md-2">
           		<label>Estatus:</label>
@@ -98,7 +98,13 @@
           		<label>Descripción:</label>
           		<textarea name="act_descripcion" class="form-control" rows="1" disabled="">{{ $evento[0]->act_descripcion }}</textarea>
           	</div>
-				<input type="hidden" name="ar_idArea" value="{{ Auth::user()->ar_idArea }}">
+            
+              <div class="form-group col-md-4">
+                <label>Usuario que registró el evento:</label>
+                <p>{{ $evento[0]->usu_nombre }}</p>
+              </div>
+           
+				<input type="hidden" name="ar_idArea" value="{{ Auth::user()->usu_idarea }}">
           	<br>
 			
 			<div class="col-md-12">
